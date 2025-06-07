@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web components</title>
+    <script src="./tooltip.js"></script>
+    <script src="linkConfirm.js"></script>
+    <script src="showHide.js"></script>
+    <style>
+      :root {
+        --color-primary: #3498db;
+        --color-secondary: #2ecc71;
+      }
+      .highlight {
+        background-color: yellow;
+        border-bottom: 1px solid blue;
+      }
+      custom-tooltip {
+        border: 1px dotted green;
+      }
+    </style>
+    <style></style>
+  </head>
+  <body>
+    <div>
+      <custom-tooltip text="helloWorld" class="important"><span class="highlight">Hello</span> </custom-tooltip> World
+    </div>
+    <div>
+      <p><custom-tooltip /></p>
+    </div>
+    <a is="link-confirm" href="https://www.google.com" confirm-message="Do you want to go to Google">Google</a>
+    <show-hide default-state="show"> Toggle this content</show-hide>
+  </body>
+</html>

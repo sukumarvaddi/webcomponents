@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Components</title>
+    <script src="./modal.js"></script>
+    <style>
+      body.modal-open {
+        background: #888;
+        transition: background 0.3s;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const button = document.querySelector("button");
+        button.addEventListener("click", () => {
+          const modal = document.querySelector("my-modal");
+          if (modal.hasAttribute("open")) {
+            modal.removeAttribute("open");
+          } else {
+            modal.setAttribute("open", "");
+          }
+        });
+        const modal = document.querySelector("my-modal");
+        const body = document.body;
+
+        function updateBackground() {
+          if (modal.hasAttribute("open")) {
+            body.classList.add("modal-open");
+            button.disabled = true;
+          } else {
+            body.classList.remove("modal-open");
+            button.disabled = false;
+          }
+        }
+
+        // Listen for attribute changes on the modal
+        const observer = new MutationObserver(updateBackground);
+        observer.observe(modal, { attributes: true, attributeFilter: ["open"] });
+
+        // Initial check
+        updateBackground();
+      });
+    </script>
+  </head>
+
+  <body>
+    <button>Show Modal</button>
+    <my-modal>
+      <h1>Modal Title</h1>
+      <p>This is a simple modal example.</p>
+    </my-modal>
+  </body>
+</html>

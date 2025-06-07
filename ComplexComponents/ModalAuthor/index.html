@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+    <style>
+      body {
+        box-sizing: border-box;
+        font-family: sans-serif;
+        margin: 16px;
+      }
+
+      .form-fields-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .label {
+        font-weight: 600;
+        color: #333;
+      }
+      input {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      form button {
+        background: #0078d4;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 0;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      textarea {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        resize: vertical;
+      }
+      form .footer {
+        text-align: right;
+        padding: 8px;
+      }
+      .form-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 16px;
+        margin-top: 0;
+        text-align: center;
+      }
+    </style>
+    <script src="modal.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // listen for "esc" key to close the modal
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            const modal = document.querySelector("my-modal");
+            if (modal.hasAttribute("open")) {
+              modal.removeAttribute("open");
+            }
+          }
+        });
+
+        const button = document.querySelector("button");
+        button.addEventListener("click", () => {
+          const modal = document.querySelector("my-modal");
+          if (modal.hasAttribute("open")) {
+            modal.removeAttribute("open");
+          } else {
+            modal.setAttribute("open", "");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <button>Show Modal</button>
+    <my-modal>
+      <h1 class="form-title">Enter Author Information</h1>
+
+      <form>
+        <div class="form-fields-container">
+          <label for="author" class="label">Author:</label>
+          <input type="text" id="author" name="author" required />
+        </div>
+        <div class="form-fields-container">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-fields-container">
+          <label for="bio">Bio:</label>
+          <textarea id="bio" name="bio" rows="4" cols="30"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </my-modal>
+  </body>
+</html>
