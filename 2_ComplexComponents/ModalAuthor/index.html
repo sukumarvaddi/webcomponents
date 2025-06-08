@@ -48,14 +48,6 @@
         text-align: right;
         padding: 8px;
       }
-      .form-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #222;
-        margin-bottom: 16px;
-        margin-top: 0;
-        text-align: center;
-      }
     </style>
     <script src="modal.js"></script>
     <script>
@@ -70,14 +62,24 @@
           }
         });
 
+        const myModal = document.querySelector("my-modal");
+        myModal.addEventListener("modal-opened", () => {
+          console.log("Modal opened");
+        });
+
+        myModal.addEventListener("modal-closed", () => {
+          console.log("Modal closed");
+        });
+
         const button = document.querySelector("button");
         button.addEventListener("click", () => {
           const modal = document.querySelector("my-modal");
-          if (modal.hasAttribute("open")) {
+          /* if (modal.hasAttribute("open")) {
             modal.removeAttribute("open");
           } else {
             modal.setAttribute("open", "");
-          }
+          } */
+          modal.toggle();
         });
       });
     </script>
@@ -85,9 +87,9 @@
   <body>
     <button>Show Modal</button>
     <my-modal>
-      <h1 class="form-title">Enter Author Information</h1>
+      <h1 slot="title">Enter Author Information</h1>
 
-      <form>
+      <form slot="content">
         <div class="form-fields-container">
           <label for="author" class="label">Author:</label>
           <input type="text" id="author" name="author" required />
