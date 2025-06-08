@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/web-components-stencil.esm.js"></script>
+    <script nomodule src="/build/web-components-stencil.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('myForm').addEventListener('submit', onFormSubmit);
+      });
+
+      function onFormSubmit(event) {
+        event.preventDefault();
+        const form = document.getElementById('myForm');
+        const first = form.first.value;
+        const middle = form.middle.value;
+        const last = form.last.value;
+
+        const component = document.querySelector('my-component');
+        component.setAttribute('first', first);
+        component.setAttribute('middle', middle);
+        component.setAttribute('last', last);
+      }
+    </script>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="first">First Name:</label>
+      <input type="text" id="first" name="first" value="Stencil" />
+      <br />
+      <label for="middle">Middle Name:</label>
+      <input type="text" id="middle" name="middle" value="'Don't call me a framework'" />
+      <br />
+      <label for="last">Last Name:</label>
+      <input type="text" id="last" name="last" value="JS" />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+  </body>
+</html>
