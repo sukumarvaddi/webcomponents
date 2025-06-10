@@ -52,8 +52,7 @@ export class SideDrawer {
             <section id="tabs">
               <button
                 class={this.activeTab === 'links' ? 'active' : ''}
-                onClick={event => {
-                  // event.stopPropagation();
+                onClick={() => {
                   this.setActiveTab('links');
                 }}
               >
@@ -61,8 +60,7 @@ export class SideDrawer {
               </button>
               <button
                 class={this.activeTab === 'contact' ? 'active' : ''}
-                onClick={event => {
-                  // event.stopPropagation();
+                onClick={() => {
                   this.setActiveTab('contact');
                 }}
               >

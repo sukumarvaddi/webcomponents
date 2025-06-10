@@ -12,7 +12,7 @@
 
 :host([open]) .backdrop {
   opacity: 1;
-  pointer-events: all;
+  pointer-events: all; /* does not allow clicks to pass through */
 }
 
 aside {
