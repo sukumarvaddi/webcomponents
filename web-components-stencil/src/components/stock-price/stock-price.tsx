@@ -1,4 +1,4 @@
-import { Component, Host, State, h } from '@stencil/core';
+import { Component, Element, State, h } from '@stencil/core';
 
 @Component({
   tag: 'stock-price',
@@ -6,6 +6,11 @@ import { Component, Host, State, h } from '@stencil/core';
   shadow: true,
 })
 export class StockPrice {
+  input: HTMLInputElement;
+
+  // Refers to the host element of the component
+  @Element() el: HTMLElement;
+
   @State() stockPrice: string = '';
 
   constructor() {
@@ -14,8 +19,16 @@ export class StockPrice {
 
   fetchStockPrice = async (event: Event) => {
     event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const stockSymbol = form['stock-symbol'].value.trim().toUpperCase();
+    // Option 1
+    // const form = event.target as HTMLFormElement;
+    // const stockSymbol = form['stock-symbol'].value.trim().toUpperCase();
+
+    //Option 2
+    // const stockSymbol = this.el.shadowRoot.querySelector<HTMLInputElement>('#stock-symbol')?.value.trim().toUpperCase();
+
+    //Option 3
+    const stockSymbol = this.input.value.trim().toUpperCase();
+
     if (!stockSymbol) {
       alert('Please enter a valid stock symbol.');
       return;
@@ -30,7 +43,7 @@ export class StockPrice {
     return [
       <form onSubmit={this.fetchStockPrice}>
         <label htmlFor="stock-symbol">Enter Stock Symbol:</label>
-        <input type="text" id="stock-symbol" name="stock-symbol" placeholder="e.g., AAPL, GOOGL" />
+        <input type="text" id="stock-symbol" name="stock-symbol" placeholder="e.g., AAPL, GOOGL" ref={el => (this.input = el)} />
         <button type="submit">Get Price</button>
       </form>,
       <div>

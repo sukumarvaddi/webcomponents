@@ -9,13 +9,6 @@
     <script nomodule src="/build/web-components-stencil.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // document.getElementById('myForm').addEventListener('submit', onFormSubmit);
-
-        // setTimeout(() => {
-        // drawer.title = 'The drawer changed via property';
-        // drawer.setAttribute('title', 'The drawer changed via attribute');
-        // }, 1000);
-
         const drawer = document.querySelector('side-drawer');
         const toggleDrawerButton = document.querySelector('#toggleDrawer');
         toggleDrawerButton.addEventListener('click', () => {
@@ -24,19 +17,6 @@
           drawer.toggle();
         });
       });
-
-      // function onFormSubmit(event) {
-      //   event.preventDefault();
-      //   const form = document.getElementById('myForm');
-      //   const first = form.first.value;
-      //   const middle = form.middle.value;
-      //   const last = form.last.value;
-
-      //   const component = document.querySelector('my-component');
-      //   component.setAttribute('first', first);
-      //   component.setAttribute('middle', middle);
-      //   component.setAttribute('last', last);
-      // }
     </script>
     <style>
       body {
@@ -59,21 +39,9 @@
     </style>
   </head>
   <body>
-    <!-- <form id="myForm">
-      <label for="first">First Name:</label>
-      <input type="text" id="first" name="first" value="Stencil" />
-      <br />
-      <label for="middle">Middle Name:</label>
-      <input type="text" id="middle" name="middle" value="'Don't call me a framework'" />
-      <br />
-      <label for="last">Last Name:</label>
-      <input type="text" id="last" name="last" value="JS" />
-      <br />
-      <button type="submit">Submit</button>
-    </form>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component> -->
+    <!-- <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component> - -->
 
-    <!-- <button id="toggleDrawer">Toggle Drawer</button>
+    <button id="toggleDrawer">Toggle Drawer</button>
     <side-drawer title="My first Drawer">
       <nav class="side-nav">
         <ul>
@@ -82,7 +50,7 @@
           <li><a href="/">Link 3</a></li>
         </ul>
       </nav>
-    </side-drawer> -->
+    </side-drawer>
 
     <stock-price></stock-price>
   </body>

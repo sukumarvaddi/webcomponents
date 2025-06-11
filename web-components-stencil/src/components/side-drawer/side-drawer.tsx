@@ -17,7 +17,7 @@ export class SideDrawer {
   }
 
   @Method()
-  toggle() {
+  async toggle() {
     this.open = !this.open;
   }
 
