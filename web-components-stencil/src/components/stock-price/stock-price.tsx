@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'stock-price',
@@ -6,6 +6,12 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class StockPrice {
+  @State() stockPrice: string = '';
+
+  constructor() {
+    this.fetchStockPrice = this.fetchStockPrice.bind(this);
+  }
+
   fetchStockPrice = async (event: Event) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -14,6 +20,10 @@ export class StockPrice {
       alert('Please enter a valid stock symbol.');
       return;
     }
+    const response = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=964XYIDUV8SBYCB0`);
+    const data = await response.json();
+    const stockPrice = data['Global Quote'] ? data['Global Quote']['05. price'] : '0.00';
+    this.stockPrice = stockPrice;
   };
 
   render() {
@@ -24,7 +34,7 @@ export class StockPrice {
         <button type="submit">Get Price</button>
       </form>,
       <div>
-        <p id="stock-price">Current Price: $0.00</p>
+        <p id="stock-price">Current Price: ${this.stockPrice}</p>
       </div>,
     ];
   }
