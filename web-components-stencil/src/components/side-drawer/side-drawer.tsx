@@ -16,16 +16,16 @@ export class SideDrawer {
     this.setActiveTab = this.setActiveTab.bind(this);
   }
 
+  @Method()
+  toggle() {
+    this.open = !this.open;
+  }
+
   closeSideDrawer() {
     this.open = false;
   }
   setActiveTab(tab: string) {
     this.activeTab = tab;
-  }
-
-  @Method()
-  toggle() {
-    this.open = !this.open;
   }
 
   render() {
