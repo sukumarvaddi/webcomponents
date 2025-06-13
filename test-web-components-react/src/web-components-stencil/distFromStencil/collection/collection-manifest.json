@@ -1,0 +1,16 @@
+{
+  "entries": [
+    "components/loading-stock/stock-loading.js",
+    "components/my-component/my-component.js",
+    "components/side-drawer/side-drawer.js",
+    "components/stock-finder/stock-finder.js",
+    "components/stock-price/stock-price.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "4.33.1",
+    "typescriptVersion": "5.5.4"
+  },
+  "collections": [],
+  "bundles": []
+}

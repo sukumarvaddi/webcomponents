@@ -13,23 +13,23 @@ import React from "react";
 import {
   MyComponent as MyComponentElement,
   defineCustomElement as defineMyComponent,
-} from "./web-components-stencil/dist/components/my-component.js";
+} from "./web-components-stencil/distFromStencil/components/my-component.js";
 import {
   SideDrawer as SideDrawerElement,
   defineCustomElement as defineSideDrawer,
-} from "./web-components-stencil/dist/components/side-drawer.js";
+} from "./web-components-stencil/distFromStencil/components/side-drawer.js";
 import {
   StockFinder as StockFinderElement,
   defineCustomElement as defineStockFinder,
-} from "./web-components-stencil/dist/components/stock-finder.js";
+} from "./web-components-stencil/distFromStencil/components/stock-finder.js";
 import {
   StockLoading as StockLoadingElement,
   defineCustomElement as defineStockLoading,
-} from "./web-components-stencil/dist/components/stock-loading.js";
+} from "./web-components-stencil/distFromStencil/components/stock-loading.js";
 import {
   StockPrice as StockPriceElement,
   defineCustomElement as defineStockPrice,
-} from "./web-components-stencil/dist/components/stock-price.js";
+} from "./web-components-stencil/distFromStencil/components/stock-price.js";
 
 export type MyComponentEvents = NonNullable<unknown>;
 
