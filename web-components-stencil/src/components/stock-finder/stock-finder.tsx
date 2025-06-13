@@ -44,6 +44,12 @@ export class StockFinder {
     await sleep(2000); // Set the app state to loading
     const response = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${stockSymbol}&apikey=G5Q599MACNAP8JET`);
     const data = await response.json();
+    if (data.bestMatches === undefined) {
+      this.appState = 'error'; // Set the app state to error if no matches found
+      console.error('No matches found for the stock symbol:', stockSymbol);
+      this.stockSymbols = [];
+      return;
+    }
     this.appState = 'success'; // Set the app state to success
     this.stockSymbols = data?.bestMatches?.map((match: StockSymbolMatch) => ({ symbol: match['1. symbol'], name: match['2. name'] })) ?? [];
     console.log('Fetched stock symbols:', this.stockSymbols);
@@ -87,7 +93,8 @@ export class StockFinder {
           </ul>
         )}
         {this.appState === 'loading' && <stock-loading style={{ width: 'fit-content', margin: 'auto' }}></stock-loading>}
-        {this.appState !== 'loading' && this.stockSymbols.length === 0 && !this.stockSymbol && <p class="instruction">Please enter a stock symbol to search.</p>}
+        {this.appState !== 'idle' && this.stockSymbols.length === 0 && !this.stockSymbol && <p class="instruction">Please enter a stock symbol to search.</p>}
+        {this.appState === 'error' && <p class="error">Something went wrong.</p>}
         {/* <p>Note: This component uses the Alpha Vantage API for stock symbol search.</p>
         <p>API Key: 964XYIDUV8SBYCB0</p>
         <p>
