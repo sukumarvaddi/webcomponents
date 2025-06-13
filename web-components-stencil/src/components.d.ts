@@ -25,8 +25,18 @@ export namespace Components {
         "title": string;
         "toggle": () => Promise<void>;
     }
-    interface StockPrice {
+    interface StockFinder {
+        "stockSymbol": string;
     }
+    interface StockLoading {
+    }
+    interface StockPrice {
+        "stockSymbol": string;
+    }
+}
+export interface StockFinderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLStockFinderElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -41,6 +51,29 @@ declare global {
         prototype: HTMLSideDrawerElement;
         new (): HTMLSideDrawerElement;
     };
+    interface HTMLStockFinderElementEventMap {
+        "stockSymbolChanged": string;
+    }
+    interface HTMLStockFinderElement extends Components.StockFinder, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLStockFinderElementEventMap>(type: K, listener: (this: HTMLStockFinderElement, ev: StockFinderCustomEvent<HTMLStockFinderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLStockFinderElementEventMap>(type: K, listener: (this: HTMLStockFinderElement, ev: StockFinderCustomEvent<HTMLStockFinderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLStockFinderElement: {
+        prototype: HTMLStockFinderElement;
+        new (): HTMLStockFinderElement;
+    };
+    interface HTMLStockLoadingElement extends Components.StockLoading, HTMLStencilElement {
+    }
+    var HTMLStockLoadingElement: {
+        prototype: HTMLStockLoadingElement;
+        new (): HTMLStockLoadingElement;
+    };
     interface HTMLStockPriceElement extends Components.StockPrice, HTMLStencilElement {
     }
     var HTMLStockPriceElement: {
@@ -50,6 +83,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "side-drawer": HTMLSideDrawerElement;
+        "stock-finder": HTMLStockFinderElement;
+        "stock-loading": HTMLStockLoadingElement;
         "stock-price": HTMLStockPriceElement;
     }
 }
@@ -72,11 +107,20 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "title"?: string;
     }
+    interface StockFinder {
+        "onStockSymbolChanged"?: (event: StockFinderCustomEvent<string>) => void;
+        "stockSymbol"?: string;
+    }
+    interface StockLoading {
+    }
     interface StockPrice {
+        "stockSymbol"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "side-drawer": SideDrawer;
+        "stock-finder": StockFinder;
+        "stock-loading": StockLoading;
         "stock-price": StockPrice;
     }
 }
@@ -86,6 +130,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "side-drawer": LocalJSX.SideDrawer & JSXBase.HTMLAttributes<HTMLSideDrawerElement>;
+            "stock-finder": LocalJSX.StockFinder & JSXBase.HTMLAttributes<HTMLStockFinderElement>;
+            "stock-loading": LocalJSX.StockLoading & JSXBase.HTMLAttributes<HTMLStockLoadingElement>;
             "stock-price": LocalJSX.StockPrice & JSXBase.HTMLAttributes<HTMLStockPriceElement>;
         }
     }

@@ -15,9 +15,7 @@ form {
   gap: 10px;
   max-width: 300px;
 }
-form label {
-  font-weight: bold;
-}
+
 input[type='text'] {
   padding: 5px;
   border: 1px solid #ccc;
@@ -34,4 +32,9 @@ button {
 #stock-price {
   margin-top: 20px;
   font-size: 1.2em;
+  text-align: center;
+  color: #333;
+  font-weight: lighter;
+  font-size: small;
+  font-style: oblique;
 }
